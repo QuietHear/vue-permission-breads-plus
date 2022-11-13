@@ -4,10 +4,11 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2022-11-13 16:28:34
+ * @LastEditTime: 2022-11-13 17:03:49
 */
 <template>
   <div class="vue-permission-breads-plus">
+    <!-- 左侧内容 -->
     <div class="left">
       {{ i18n ? $t(positionTitle) : positionTitle }}：
       <ul>
@@ -21,10 +22,29 @@
         </li>
       </ul>
     </div>
+    <!-- 右侧返回区 -->
     <div class="back" @click="goBack" v-if="showBackBtn">
-      <el-icon v-if="backIconPosition === 'left'"><ArrowLeft /></el-icon>
+      <template v-if="backIconPosition === 'left'">
+        <el-icon v-if="backBtnArr[0] === 'el'">
+          <component :is="backBtnArr[1]" />
+        </el-icon>
+        <i
+          :class="['icon iconfont', 'icon-' + backBtnArr[1]]"
+          v-else-if="backBtnArr[0] === 'iconfont'"
+        />
+        <i :class="backBtnArr[0]" v-else>{{ backBtnArr[1] }}</i>
+      </template>
       {{ i18n ? $t(backTitle) : backTitle }}
-      <el-icon v-if="backIconPosition === 'right'"><ArrowLeft /></el-icon>
+      <template v-if="backIconPosition === 'right'">
+        <el-icon v-if="backBtnArr[0] === 'el'">
+          <component :is="backBtnArr[1]" />
+        </el-icon>
+        <i
+          :class="['icon iconfont', 'icon-' + backBtnArr[1]]"
+          v-else-if="backBtnArr[0] === 'iconfont'"
+        />
+        <i :class="backBtnArr[0]" v-else>{{ backBtnArr[1] }}</i>
+      </template>
     </div>
   </div>
 </template>
@@ -60,6 +80,11 @@ export default {
     backIconPosition: {
       type: String,
       default: "left",
+    },
+    // 返回按钮
+    backBtnClass: {
+      type: String,
+      default: "el/ArrowLeft",
     },
   },
   setup(props, { attrs, slots, emit, expose }) {
@@ -140,6 +165,7 @@ export default {
         navigate.value = res.nameList;
         showBackBtn.value =
           navigate.value[navigate.value.length - 1].showBackBtn || false;
+        console.log(showBackBtn.value, "showBackBtn");
       });
     };
     routeChange();
@@ -149,11 +175,14 @@ export default {
     const goOne = (item) => {
       router.push({ name: item.name });
     };
+    // 返回按钮详情
+    const backBtnArr = ref(props.backBtnClass.split("/"));
     return {
       showBackBtn,
       navigate,
       goBack,
       goOne,
+      backBtnArr,
     };
   },
 };
