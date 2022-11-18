@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2022-11-13 17:03:49
+ * @LastEditTime: 2022-11-18 17:56:17
 */
 <template>
   <div class="vue-permission-breads-plus">
@@ -94,7 +94,13 @@ export default {
     const showBackBtn = ref(false);
     // 展示的列表
     const navigate = ref([]);
-    let routeMsg = ref(JSON.parse(JSON.stringify(props.menu)));
+    let routeMsg = ref([]);
+    watch(
+      () => props.menu,
+      () => {
+        init();
+      }
+    );
     // 找到当前路径
     const searchRoute = (list, name) => {
       return new Promise((resolve) => {
@@ -125,7 +131,6 @@ export default {
         }
       });
     };
-    sortData(routeMsg.value);
     // 处理数据最终路径
     const dealData = (list) => {
       list = JSON.parse(JSON.stringify(list));
@@ -155,7 +160,6 @@ export default {
       });
       return list;
     };
-    routeMsg.value = [...dealData(routeMsg.value)];
     watch(route, () => {
       routeChange();
     });
@@ -168,7 +172,14 @@ export default {
         console.log(showBackBtn.value, "showBackBtn");
       });
     };
-    routeChange();
+    // 初始化方法
+    const init = () => {
+      routeMsg.value = JSON.parse(JSON.stringify(props.menu));
+      sortData(routeMsg.value);
+      routeMsg.value = [...dealData(routeMsg.value)];
+      routeChange();
+    };
+    init();
     const goBack = () => {
       router.back();
     };
