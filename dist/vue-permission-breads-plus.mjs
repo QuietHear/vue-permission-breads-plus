@@ -1,12 +1,7 @@
-import { ref as B, watch as P, resolveComponent as D, openBlock as t, createElementBlock as l, createElementVNode as E, createTextVNode as A, toDisplayString as h, Fragment as S, renderList as R, createCommentVNode as g, createBlock as y, withCtx as T, resolveDynamicComponent as p, normalizeClass as v } from "vue";
-import { useRouter as z, useRoute as F } from "vue-router";
-const M = (r, s) => {
-  const a = r.__vccOpts || r;
-  for (const [n, _] of s)
-    a[n] = _;
-  return a;
-}, j = {
-  name: "vuePermissionBreadsPlus",
+import { ref as d, watch as L, resolveComponent as _, openBlock as l, createElementBlock as c, createElementVNode as E, createTextVNode as B, toDisplayString as h, Fragment as m, renderList as x, createCommentVNode as v, createBlock as k, withCtx as T, resolveDynamicComponent as P, normalizeClass as y } from "vue";
+import { useRouter as D, useRoute as $ } from "vue-router";
+const A = { class: "vue-permission-breads-plus" }, R = { class: "left" }, z = ["onClick"], F = { key: 0 }, M = {
+  __name: "index",
   props: {
     menu: {
       type: Array,
@@ -33,126 +28,118 @@ const M = (r, s) => {
       default: "el/ArrowLeft"
     }
   },
-  setup(r, { attrs: s, slots: a, emit: n, expose: _ }) {
-    const b = z(), d = F(), u = B(!1), f = B([]);
-    let k = B([]);
-    P(
-      () => r.menu,
+  setup(a) {
+    const f = a, w = D(), S = $(), b = d(!1), r = d([]);
+    let u = d([]);
+    L(
+      () => f.menu,
       () => {
         J();
       }
     );
-    const m = (c, e) => new Promise((i) => {
-      c.forEach((o) => {
-        o.name === e ? i(o) : o.children.length > 0 && m(o.children, e).then((w) => {
-          i(w);
+    const g = (t, e) => new Promise((s) => {
+      t.forEach((n) => {
+        n.name === e ? s(n) : n.children.length > 0 && g(n.children, e).then((i) => {
+          s(i);
         });
       });
-    }), C = (c, e) => {
-      let i = [];
-      e && (i = [...e.nameList], i.push(e)), c.forEach((o) => {
-        o.nameList = i, o.children && o.children.length > 0 ? C(o.children, JSON.parse(JSON.stringify(o))) : o.children = [];
+    }), C = (t, e) => {
+      let s = [];
+      e && (s = [...e.nameList], s.push(e)), t.forEach((n) => {
+        n.nameList = s, n.children && n.children.length > 0 ? C(n.children, JSON.parse(JSON.stringify(n))) : n.children = [];
       });
-    }, N = (c) => (c = JSON.parse(JSON.stringify(c)), c.forEach((e) => {
+    }, N = (t) => (t = JSON.parse(JSON.stringify(t)), t.forEach((e) => {
       if (e.replaceIndex !== !0)
         if (e.parents) {
-          let i = e.parents.split("/");
-          i.forEach((o, w) => {
-            m(JSON.parse(JSON.stringify(k.value)), o).then(
-              (L) => {
-                L.replaceIndex !== !0 && e.nameList.push(L), w + 1 === i.length && e.nameList.push(e);
+          let s = e.parents.split("/");
+          s.forEach((n, i) => {
+            g(JSON.parse(JSON.stringify(u.value)), n).then(
+              (p) => {
+                p.replaceIndex !== !0 && e.nameList.push(p), i + 1 === s.length && e.nameList.push(e);
               }
             );
           });
         } else
           e.nameList.push(e);
       e.children.length > 0 && (e.children = [...N(e.children)]);
-    }), c);
-    P(d, () => {
+    }), t);
+    L(S, () => {
       O();
     });
     const O = () => {
-      m(k.value, d.name).then((c) => {
-        f.value = c.nameList, u.value = f.value[f.value.length - 1].showBackBtn || !1;
+      g(u.value, S.name).then((t) => {
+        r.value = t.nameList, b.value = r.value[r.value.length - 1].showBackBtn || !1;
       });
     }, J = () => {
-      k.value = JSON.parse(JSON.stringify(r.menu)), C(k.value), k.value = [...N(k.value)], O();
+      u.value = JSON.parse(JSON.stringify(f.menu)), C(u.value), u.value = [...N(u.value)], O();
     };
     J();
-    const x = () => {
-      b.back();
-    }, I = (c) => {
-      b.push({ name: c.name });
-    }, V = B(r.backBtnClass.split("/"));
-    return {
-      showBackBtn: u,
-      navigate: f,
-      goBack: x,
-      goOne: I,
-      backBtnArr: V
+    const I = () => {
+      w.back();
+    }, V = (t) => {
+      w.push({ name: t.name });
+    }, o = d(f.backBtnClass.split("/"));
+    return (t, e) => {
+      const s = _("el-icon");
+      return l(), c("div", A, [
+        E("div", R, [
+          B(h(a.i18n ? t.$t(a.positionTitle) : a.positionTitle) + "\uFF1A ", 1),
+          E("ul", null, [
+            (l(!0), c(m, null, x(r.value, (n, i) => (l(), c("li", {
+              key: i,
+              onClick: (p) => i === r.value.length - 1 || V(n)
+            }, [
+              B(h(a.i18n ? t.$t(n.title) : n.title) + " ", 1),
+              i !== r.value.length - 1 ? (l(), c("span", F, ">")) : v("", !0)
+            ], 8, z))), 128))
+          ])
+        ]),
+        b.value ? (l(), c("div", {
+          key: 0,
+          class: "back",
+          onClick: I
+        }, [
+          a.backIconPosition === "left" ? (l(), c(m, { key: 0 }, [
+            o.value[0] === "el" ? (l(), k(s, { key: 0 }, {
+              default: T(() => [
+                (l(), k(P(o.value[1])))
+              ]),
+              _: 1
+            })) : o.value[0] === "iconfont" ? (l(), c("i", {
+              key: 1,
+              class: y(["icon iconfont", "icon-" + o.value[1]])
+            }, null, 2)) : (l(), c("i", {
+              key: 2,
+              class: y(o.value[0])
+            }, h(o.value[1]), 3))
+          ], 64)) : v("", !0),
+          B(" " + h(a.i18n ? t.$t(a.backTitle) : a.backTitle) + " ", 1),
+          a.backIconPosition === "right" ? (l(), c(m, { key: 1 }, [
+            o.value[0] === "el" ? (l(), k(s, { key: 0 }, {
+              default: T(() => [
+                (l(), k(P(o.value[1])))
+              ]),
+              _: 1
+            })) : o.value[0] === "iconfont" ? (l(), c("i", {
+              key: 1,
+              class: y(["icon iconfont", "icon-" + o.value[1]])
+            }, null, 2)) : (l(), c("i", {
+              key: 2,
+              class: y(o.value[0])
+            }, h(o.value[1]), 3))
+          ], 64)) : v("", !0)
+        ])) : v("", !0)
+      ]);
     };
   }
-}, q = { class: "vue-permission-breads-plus" }, G = { class: "left" }, H = ["onClick"], K = { key: 0 };
-function Q(r, s, a, n, _, b) {
-  const d = D("el-icon");
-  return t(), l("div", q, [
-    E("div", G, [
-      A(h(a.i18n ? r.$t(a.positionTitle) : a.positionTitle) + "\uFF1A ", 1),
-      E("ul", null, [
-        (t(!0), l(S, null, R(n.navigate, (u, f) => (t(), l("li", {
-          key: f,
-          onClick: (k) => f === n.navigate.length - 1 || n.goOne(u)
-        }, [
-          A(h(a.i18n ? r.$t(u.title) : u.title) + " ", 1),
-          f !== n.navigate.length - 1 ? (t(), l("span", K, ">")) : g("", !0)
-        ], 8, H))), 128))
-      ])
-    ]),
-    n.showBackBtn ? (t(), l("div", {
-      key: 0,
-      class: "back",
-      onClick: s[0] || (s[0] = (...u) => n.goBack && n.goBack(...u))
-    }, [
-      a.backIconPosition === "left" ? (t(), l(S, { key: 0 }, [
-        n.backBtnArr[0] === "el" ? (t(), y(d, { key: 0 }, {
-          default: T(() => [
-            (t(), y(p(n.backBtnArr[1])))
-          ]),
-          _: 1
-        })) : n.backBtnArr[0] === "iconfont" ? (t(), l("i", {
-          key: 1,
-          class: v(["icon iconfont", "icon-" + n.backBtnArr[1]])
-        }, null, 2)) : (t(), l("i", {
-          key: 2,
-          class: v(n.backBtnArr[0])
-        }, h(n.backBtnArr[1]), 3))
-      ], 64)) : g("", !0),
-      A(" " + h(a.i18n ? r.$t(a.backTitle) : a.backTitle) + " ", 1),
-      a.backIconPosition === "right" ? (t(), l(S, { key: 1 }, [
-        n.backBtnArr[0] === "el" ? (t(), y(d, { key: 0 }, {
-          default: T(() => [
-            (t(), y(p(n.backBtnArr[1])))
-          ]),
-          _: 1
-        })) : n.backBtnArr[0] === "iconfont" ? (t(), l("i", {
-          key: 1,
-          class: v(["icon iconfont", "icon-" + n.backBtnArr[1]])
-        }, null, 2)) : (t(), l("i", {
-          key: 2,
-          class: v(n.backBtnArr[0])
-        }, h(n.backBtnArr[1]), 3))
-      ], 64)) : g("", !0)
-    ])) : g("", !0)
-  ]);
-}
-const U = /* @__PURE__ */ M(j, [["render", Q]]), W = [U], X = {
-  install(r) {
-    W.forEach((s) => {
-      r.component(s.name, s);
+}, j = [M], q = {
+  install(a) {
+    j.forEach((f) => {
+      a.component("vuePermissionBreadsPlus", f);
     });
   }
 };
-typeof window < "u" && window.Vue && window.Vue.use(X);
+typeof window < "u" && window.Vue && window.Vue.use(q);
 export {
-  X as default
+  q as default
 };
