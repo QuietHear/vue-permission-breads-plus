@@ -4,36 +4,58 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-11 18:18:38
+ * @LastEditTime: 2023-01-18 16:53:23
 */
 <template>
-  <div class="vue-permission-breads-plus">
+  <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
     <!-- 左侧内容 -->
     <div class="left">
-      {{ i18n? $t(positionTitle): positionTitle }}：
+      <template v-if="!simpleMode">
+        {{ i18n? $t(positionTitle): positionTitle }}：
+      </template>
       <ul>
         <li v-for="(item, index) in navigate" :key="index" @click="index === navigate.length - 1 || goOne(item)">
+          <template v-if="item.icon && (item.icon.icon || item.icon.type)">
+            <component class="menu-icon" :is="item.icon.icon" v-bind="item.icon.attrs"
+              v-if="item.icon.type === 'custom'" />
+            <el-icon class="menu-icon" v-bind="item.icon.attrs" v-else-if="item.icon.type === 'el'">
+              <component :is="item.icon.icon" />
+            </el-icon>
+            <i :class="['menu-icon icon iconfont', 'icon-' + item.icon.icon]" v-bind="item.icon.attrs"
+              v-else-if="item.icon.type === 'iconfont'" />
+            <i :class="['menu-icon', item.icon.type]" v-bind="item.icon.attrs" v-else>{{ item.icon.icon }}</i>
+          </template>
           {{ i18n? $t(item.title) : item.title }}
-          <span v-if="index !== navigate.length - 1">&gt;</span>
+          <template v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)">
+            <component class="space-icon" :is="spaceIcon.icon" v-bind="spaceIcon.attrs"
+              v-if="spaceIcon.type === 'custom'" />
+            <el-icon class="space-icon" v-bind="spaceIcon.attrs" v-else-if="spaceIcon.type === 'el'">
+              <component :is="spaceIcon.icon" />
+            </el-icon>
+            <i :class="['space-icon icon iconfont', 'icon-' + spaceIcon.icon]" v-bind="spaceIcon.attrs"
+              v-else-if="spaceIcon.type === 'iconfont'" />
+            <i :class="['space-icon', spaceIcon.type]" v-bind="spaceIcon.attrs" v-else>{{ spaceIcon.icon }}</i>
+          </template>
         </li>
       </ul>
     </div>
     <!-- 右侧返回区 -->
-    <div class="back" @click="goBack" v-if="showBackBtn">
-      <template v-if="backIconPosition === 'left'">
-        <el-icon v-if="backBtnArr[0] === 'el'">
-          <component :is="backBtnArr[1]" />
-        </el-icon>
-        <i :class="['icon iconfont', 'icon-' + backBtnArr[1]]" v-else-if="backBtnArr[0] === 'iconfont'" />
-        <i :class="backBtnArr[0]" v-else>{{ backBtnArr[1] }}</i>
-      </template>
-      {{ i18n? $t(backTitle): backTitle }}
+    <div :class="['back', backIconPosition === 'right' ? 'icon-right' : 'icon-left']" @click="goBack"
+      v-if="!simpleMode && showBackBtn">
       <template v-if="backIconPosition === 'right'">
-        <el-icon v-if="backBtnArr[0] === 'el'">
-          <component :is="backBtnArr[1]" />
+        {{ i18n? $t(backTitle): backTitle }}
+      </template>
+      <template v-if="backBtn.icon || backBtn.type">
+        <component :is="backBtn.icon" v-bind="backBtn.attrs" v-if="backBtn.type === 'custom'" />
+        <el-icon v-bind="backBtn.attrs" v-else-if="backBtn.type === 'el'">
+          <component :is="backBtn.icon" />
         </el-icon>
-        <i :class="['icon iconfont', 'icon-' + backBtnArr[1]]" v-else-if="backBtnArr[0] === 'iconfont'" />
-        <i :class="backBtnArr[0]" v-else>{{ backBtnArr[1] }}</i>
+        <i :class="['icon iconfont', 'icon-' + backBtn.icon]" v-bind="backBtn.attrs"
+          v-else-if="backBtn.type === 'iconfont'" />
+        <i :class="backBtn.type" v-bind="backBtn.attrs" v-else>{{ backBtn.icon }}</i>
+      </template>
+      <template v-if="backIconPosition === 'left'">
+        {{ i18n? $t(backTitle): backTitle }}
       </template>
     </div>
   </div>
@@ -49,8 +71,22 @@ const props = defineProps({
       return [];
     },
   },
+  // 间隔图标
+  spaceIcon: {
+    type: Object,
+    default: () => {
+      return {
+        icon: "＜"
+      };
+    },
+  },
   // 是否开启国际化
   i18n: {
+    type: Boolean,
+    default: false,
+  },
+  // 简易模式
+  simpleMode: {
     type: Boolean,
     default: false,
   },
@@ -70,9 +106,11 @@ const props = defineProps({
     default: "left",
   },
   // 返回按钮
-  backBtnClass: {
-    type: String,
-    default: "el/ArrowLeft",
+  backBtn: {
+    type: Object,
+    default: () => {
+      return {};
+    },
   }
 });
 const router = useRouter();
@@ -81,7 +119,28 @@ const route = useRoute();
 const showBackBtn = ref(false);
 // 展示的列表
 const navigate = ref([]);
-let routeMsg = ref([]);
+// 展开数据
+let rowData = [];
+// 树形数据
+let routeMsg = [];
+// 深拷贝
+const deepCopy = (obj, num = 1) => {
+  let result = obj instanceof Array ? [] : {};
+  for (let key in obj) {
+    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key], num + 1) : obj[key];
+  }
+  return result;
+};
+// 标准数据格式化
+const standardData = (obj) => {
+  return {
+    name: obj.name,
+    title: obj.title,
+    icon: obj.icon,
+    replaceIndex: obj.replaceIndex || false,
+    showBackBtn: obj.showBackBtn || false
+  };
+};
 watch(
   () => props.menu,
   () => {
@@ -89,81 +148,73 @@ watch(
   }
 );
 // 找到当前路径
-const searchRoute = (list, name) => {
-  return new Promise((resolve) => {
-    list.forEach((item) => {
-      if (item.name === name) {
-        resolve(item);
-      } else if (item.children.length > 0) {
-        searchRoute(item.children, name).then((res) => {
-          resolve(res);
-        });
-      }
-    });
-  });
+const searchRoute = (name) => {
+  return rowData.filter(item => {
+    return item.name === name;
+  })[0];
 };
 // 格式化数据
 const sortData = (list, parent) => {
-  let arr = [];
-  if (parent) {
-    arr = [...parent.nameList];
-    arr.push(parent);
-  }
   list.forEach((item) => {
-    item.nameList = arr;
+    let routeArr = [];
+    if (parent) {
+      routeArr = [...parent.nameList];
+      routeArr.push(standardData(parent));
+    }
+    item.nameList = routeArr;
     if (item.children && item.children.length > 0) {
-      sortData(item.children, JSON.parse(JSON.stringify(item)));
+      sortData(item.children, item);
     } else {
       item.children = [];
     }
+    rowData.push(item);
   });
 };
 // 处理数据最终路径
 const dealData = (list) => {
-  list = JSON.parse(JSON.stringify(list));
   list.forEach((item) => {
     if (item.replaceIndex !== true) {
       if (item.parents) {
         let arr = item.parents.split("/");
         arr.forEach((one, oneIndex) => {
-          searchRoute(JSON.parse(JSON.stringify(routeMsg.value)), one).then(
-            (res) => {
-              if (res.replaceIndex !== true) {
-                item.nameList.push(res);
-              }
-              if (oneIndex + 1 === arr.length) {
-                item.nameList.push(item);
-              }
-            }
-          );
+          const res = searchRoute(one);
+          if (res.replaceIndex !== true) {
+            item.nameList.push(standardData(res));
+          }
+          if (oneIndex + 1 === arr.length) {
+            item.nameList.push(standardData(item));
+          }
         });
       } else {
-        item.nameList.push(item);
+        item.nameList.push(standardData(item));
       }
     }
     if (item.children.length > 0) {
-      item.children = [...dealData(item.children)];
+      dealData(item.children);
     }
   });
-  return list;
 };
 watch(route, () => {
+  console.log(route, 'watch route');
   routeChange();
 });
 // 路由改变
 const routeChange = () => {
-  searchRoute(routeMsg.value, route.name).then((res) => {
-    navigate.value = res.nameList;
-    showBackBtn.value =
-      navigate.value[navigate.value.length - 1].showBackBtn || false;
-    console.log(showBackBtn.value, "showBackBtn");
-  });
+  const res = searchRoute(route.name);
+  console.log(res, 'routeChange');
+  navigate.value = [...res.nameList];
+  showBackBtn.value = navigate.value[navigate.value.length - 1].showBackBtn || false;
+  console.log(navigate.value, 'navigate');
+  console.log(showBackBtn.value, "showBackBtn");
 };
 // 初始化方法
 const init = () => {
-  routeMsg.value = JSON.parse(JSON.stringify(props.menu));
-  sortData(routeMsg.value);
-  routeMsg.value = [...dealData(routeMsg.value)];
+  console.log(props.menu, 'props.menu');
+  routeMsg = deepCopy(props.menu);
+  rowData = [];
+  sortData(routeMsg);
+  dealData(routeMsg);
+  console.log(routeMsg, rowData, 'routeMsg');
   routeChange();
 };
 init();
@@ -173,8 +224,6 @@ const goBack = () => {
 const goOne = (item) => {
   router.push({ name: item.name });
 };
-// 返回按钮详情
-const backBtnArr = ref(props.backBtnClass.split("/"));
 </script>
 <style lang="scss">
 @use "style/index.scss" as *;
