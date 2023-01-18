@@ -4,26 +4,30 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2022-11-13 17:02:40
+ * @LastEditTime: 2023-01-18 16:40:10
 */
-:root {
-  --permis-bread-height        : 33px;
+.vue-permission-breads-plus {
+  --permis-bread-height        : 50px;
   --permis-bread-bg            : #fff;
   --permis-bread-position-color: #000;
   --permis-bread-color         : #8998a6;
-  --permis-bread-active-color  : var(--el-color-primary);
+  --permis-bread-active-color  : #000;
   --permis-bread-back-color    : #000;
-}
+  display                      : flex;
+  justify-content              : space-between;
+  height                       : var(--permis-bread-height);
+  border-bottom                : 1px solid #cbcbcd;
+  align-items                  : center;
+  background                   : var(--permis-bread-bg);
+  color                        : var(--permis-bread-position-color);
+  padding                      : 0 1vw;
 
-.vue-permission-breads-plus {
-  display        : flex;
-  justify-content: space-between;
-  height         : var(--permis-bread-height);
-  border-bottom  : 1px solid #cbcbcd;
-  align-items    : center;
-  background     : var(--permis-bread-bg);
-  color          : var(--permis-bread-position-color);
-  padding        : 0 1vw;
+  // 简易模式
+  &.simple {
+    display          : inline-flex;
+    --permis-bread-bg: transparent;
+    border-bottom    : 0;
+  }
 
   .left {
     display    : flex;
@@ -35,9 +39,10 @@
     align-items: center;
 
     li {
-      color       : var(--permis-bread-active-color);
-      margin-right: 6px;
-      cursor      : pointer;
+      color      : var(--permis-bread-active-color);
+      cursor     : pointer;
+      display    : inline-flex;
+      align-items: center;
 
       &:last-child {
         color       : var(--permis-bread-color);
@@ -45,10 +50,12 @@
         cursor      : text;
       }
 
-      span {
-        display    : inline-block;
-        margin-left: 3px;
-        user-select: none;
+      .menu-icon {
+        margin-right: 4px;
+      }
+
+      .space-icon {
+        margin: 0 6px;
       }
     }
   }
@@ -58,5 +65,17 @@
     cursor     : pointer;
     display    : flex;
     align-items: center;
+
+    &.icon-left {
+      i {
+        margin-right: 4px;
+      }
+    }
+
+    &.icon-right {
+      i {
+        margin-left: 4px;
+      }
+    }
   }
 }

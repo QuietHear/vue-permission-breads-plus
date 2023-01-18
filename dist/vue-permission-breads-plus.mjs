@@ -1,6 +1,33 @@
-import { ref as d, watch as L, resolveComponent as _, openBlock as l, createElementBlock as c, createElementVNode as E, createTextVNode as B, toDisplayString as h, Fragment as m, renderList as x, createCommentVNode as v, createBlock as k, withCtx as T, resolveDynamicComponent as P, normalizeClass as y } from "vue";
-import { useRouter as D, useRoute as $ } from "vue-router";
-const A = { class: "vue-permission-breads-plus" }, R = { class: "left" }, z = ["onClick"], F = { key: 0 }, M = {
+import { inject as x, ref as h, watch as V, resolveComponent as R, openBlock as l, createElementBlock as s, createElementVNode as _, createTextVNode as g, toDisplayString as f, Fragment as w, renderList as T, createCommentVNode as v, createBlock as p, withCtx as D, resolveDynamicComponent as L, normalizeClass as k } from "vue";
+/*!
+  * vue-router v4.1.6
+  * (c) 2022 Eduardo San Martin Morote
+  * @license MIT
+  */
+var J;
+(function(e) {
+  e.pop = "pop", e.push = "push";
+})(J || (J = {}));
+var P;
+(function(e) {
+  e.back = "back", e.forward = "forward", e.unknown = "";
+})(P || (P = {}));
+Symbol(process.env.NODE_ENV !== "production" ? "navigation failure" : "");
+var I;
+(function(e) {
+  e[e.aborted = 4] = "aborted", e[e.cancelled = 8] = "cancelled", e[e.duplicated = 16] = "duplicated";
+})(I || (I = {}));
+Symbol(process.env.NODE_ENV !== "production" ? "router view location matched" : "");
+Symbol(process.env.NODE_ENV !== "production" ? "router view depth" : "");
+const K = Symbol(process.env.NODE_ENV !== "production" ? "router" : ""), j = Symbol(process.env.NODE_ENV !== "production" ? "route location" : "");
+Symbol(process.env.NODE_ENV !== "production" ? "router view location" : "");
+function z() {
+  return x(K);
+}
+function M() {
+  return x(j);
+}
+const q = { class: "vue-permission-breads-plus" }, G = { class: "left" }, H = ["onClick"], Q = { key: 0 }, U = {
   __name: "index",
   props: {
     menu: {
@@ -28,118 +55,118 @@ const A = { class: "vue-permission-breads-plus" }, R = { class: "left" }, z = ["
       default: "el/ArrowLeft"
     }
   },
-  setup(a) {
-    const f = a, w = D(), S = $(), b = d(!1), r = d([]);
-    let u = d([]);
-    L(
-      () => f.menu,
+  setup(e) {
+    const d = e, m = z(), E = M(), S = h(!1), u = h([]);
+    let i = h([]);
+    V(
+      () => d.menu,
       () => {
-        J();
+        C();
       }
     );
-    const g = (t, e) => new Promise((s) => {
-      t.forEach((n) => {
-        n.name === e ? s(n) : n.children.length > 0 && g(n.children, e).then((i) => {
-          s(i);
+    const y = (o, n) => new Promise((c) => {
+      o.forEach((t) => {
+        t.name === n ? c(t) : t.children.length > 0 && y(t.children, n).then((r) => {
+          c(r);
         });
       });
-    }), C = (t, e) => {
-      let s = [];
-      e && (s = [...e.nameList], s.push(e)), t.forEach((n) => {
-        n.nameList = s, n.children && n.children.length > 0 ? C(n.children, JSON.parse(JSON.stringify(n))) : n.children = [];
+    }), N = (o, n) => {
+      let c = [];
+      n && (c = [...n.nameList], c.push(n)), o.forEach((t) => {
+        t.nameList = c, t.children && t.children.length > 0 ? N(t.children, JSON.parse(JSON.stringify(t))) : t.children = [];
       });
-    }, N = (t) => (t = JSON.parse(JSON.stringify(t)), t.forEach((e) => {
-      if (e.replaceIndex !== !0)
-        if (e.parents) {
-          let s = e.parents.split("/");
-          s.forEach((n, i) => {
-            g(JSON.parse(JSON.stringify(u.value)), n).then(
-              (p) => {
-                p.replaceIndex !== !0 && e.nameList.push(p), i + 1 === s.length && e.nameList.push(e);
+    }, B = (o) => (o = JSON.parse(JSON.stringify(o)), o.forEach((n) => {
+      if (n.replaceIndex !== !0)
+        if (n.parents) {
+          let c = n.parents.split("/");
+          c.forEach((t, r) => {
+            y(JSON.parse(JSON.stringify(i.value)), t).then(
+              (b) => {
+                b.replaceIndex !== !0 && n.nameList.push(b), r + 1 === c.length && n.nameList.push(n);
               }
             );
           });
         } else
-          e.nameList.push(e);
-      e.children.length > 0 && (e.children = [...N(e.children)]);
-    }), t);
-    L(S, () => {
+          n.nameList.push(n);
+      n.children.length > 0 && (n.children = [...B(n.children)]);
+    }), o);
+    V(E, () => {
       O();
     });
     const O = () => {
-      g(u.value, S.name).then((t) => {
-        r.value = t.nameList, b.value = r.value[r.value.length - 1].showBackBtn || !1;
+      y(i.value, E.name).then((o) => {
+        u.value = o.nameList, S.value = u.value[u.value.length - 1].showBackBtn || !1;
       });
-    }, J = () => {
-      u.value = JSON.parse(JSON.stringify(f.menu)), C(u.value), u.value = [...N(u.value)], O();
+    }, C = () => {
+      i.value = JSON.parse(JSON.stringify(d.menu)), N(i.value), i.value = [...B(i.value)], O();
     };
-    J();
-    const I = () => {
-      w.back();
-    }, V = (t) => {
-      w.push({ name: t.name });
-    }, o = d(f.backBtnClass.split("/"));
-    return (t, e) => {
-      const s = _("el-icon");
-      return l(), c("div", A, [
-        E("div", R, [
-          B(h(a.i18n ? t.$t(a.positionTitle) : a.positionTitle) + "\uFF1A ", 1),
-          E("ul", null, [
-            (l(!0), c(m, null, x(r.value, (n, i) => (l(), c("li", {
-              key: i,
-              onClick: (p) => i === r.value.length - 1 || V(n)
+    C();
+    const $ = () => {
+      m.back();
+    }, A = (o) => {
+      m.push({ name: o.name });
+    }, a = h(d.backBtnClass.split("/"));
+    return (o, n) => {
+      const c = R("el-icon");
+      return l(), s("div", q, [
+        _("div", G, [
+          g(f(e.i18n ? o.$t(e.positionTitle) : e.positionTitle) + "\uFF1A ", 1),
+          _("ul", null, [
+            (l(!0), s(w, null, T(u.value, (t, r) => (l(), s("li", {
+              key: r,
+              onClick: (b) => r === u.value.length - 1 || A(t)
             }, [
-              B(h(a.i18n ? t.$t(n.title) : n.title) + " ", 1),
-              i !== r.value.length - 1 ? (l(), c("span", F, ">")) : v("", !0)
-            ], 8, z))), 128))
+              g(f(e.i18n ? o.$t(t.title) : t.title) + " ", 1),
+              r !== u.value.length - 1 ? (l(), s("span", Q, ">")) : v("", !0)
+            ], 8, H))), 128))
           ])
         ]),
-        b.value ? (l(), c("div", {
+        S.value ? (l(), s("div", {
           key: 0,
           class: "back",
-          onClick: I
+          onClick: $
         }, [
-          a.backIconPosition === "left" ? (l(), c(m, { key: 0 }, [
-            o.value[0] === "el" ? (l(), k(s, { key: 0 }, {
-              default: T(() => [
-                (l(), k(P(o.value[1])))
+          e.backIconPosition === "left" ? (l(), s(w, { key: 0 }, [
+            a.value[0] === "el" ? (l(), p(c, { key: 0 }, {
+              default: D(() => [
+                (l(), p(L(a.value[1])))
               ]),
               _: 1
-            })) : o.value[0] === "iconfont" ? (l(), c("i", {
+            })) : a.value[0] === "iconfont" ? (l(), s("i", {
               key: 1,
-              class: y(["icon iconfont", "icon-" + o.value[1]])
-            }, null, 2)) : (l(), c("i", {
+              class: k(["icon iconfont", "icon-" + a.value[1]])
+            }, null, 2)) : (l(), s("i", {
               key: 2,
-              class: y(o.value[0])
-            }, h(o.value[1]), 3))
+              class: k(a.value[0])
+            }, f(a.value[1]), 3))
           ], 64)) : v("", !0),
-          B(" " + h(a.i18n ? t.$t(a.backTitle) : a.backTitle) + " ", 1),
-          a.backIconPosition === "right" ? (l(), c(m, { key: 1 }, [
-            o.value[0] === "el" ? (l(), k(s, { key: 0 }, {
-              default: T(() => [
-                (l(), k(P(o.value[1])))
+          g(" " + f(e.i18n ? o.$t(e.backTitle) : e.backTitle) + " ", 1),
+          e.backIconPosition === "right" ? (l(), s(w, { key: 1 }, [
+            a.value[0] === "el" ? (l(), p(c, { key: 0 }, {
+              default: D(() => [
+                (l(), p(L(a.value[1])))
               ]),
               _: 1
-            })) : o.value[0] === "iconfont" ? (l(), c("i", {
+            })) : a.value[0] === "iconfont" ? (l(), s("i", {
               key: 1,
-              class: y(["icon iconfont", "icon-" + o.value[1]])
-            }, null, 2)) : (l(), c("i", {
+              class: k(["icon iconfont", "icon-" + a.value[1]])
+            }, null, 2)) : (l(), s("i", {
               key: 2,
-              class: y(o.value[0])
-            }, h(o.value[1]), 3))
+              class: k(a.value[0])
+            }, f(a.value[1]), 3))
           ], 64)) : v("", !0)
         ])) : v("", !0)
       ]);
     };
   }
-}, j = [M], q = {
-  install(a) {
-    j.forEach((f) => {
-      a.component("vuePermissionBreadsPlus", f);
+}, W = [U], X = {
+  install(e) {
+    W.forEach((d) => {
+      e.component("vuePermissionBreadsPlus", d);
     });
   }
 };
-typeof window < "u" && window.Vue && window.Vue.use(q);
+typeof window < "u" && window.Vue && window.Vue.use(X);
 export {
-  q as default
+  X as default
 };
