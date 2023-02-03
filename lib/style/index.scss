@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-18 16:40:10
+ * @LastEditTime: 2023-02-03 17:59:48
 */
 .vue-permission-breads-plus {
   --permis-bread-height        : 50px;
@@ -43,6 +43,7 @@
       cursor     : pointer;
       display    : inline-flex;
       align-items: center;
+      line-height: 1.5;
 
       &:last-child {
         color       : var(--permis-bread-color);
