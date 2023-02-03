@@ -57,6 +57,8 @@
 	}
 >
 
+* `hideMenuIcon`：隐藏菜单图标-->Boolean;非必传;默认*false*
+
 * `spaceIcon`：间隔图标-->Object;非必传;默认*{icon:'＜'}*
 >
 	attrs的值会v-bind到对应dom上

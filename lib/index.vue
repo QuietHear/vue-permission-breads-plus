@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-01-18 16:53:23
+ * @LastEditTime: 2023-02-03 17:13:14
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -15,7 +15,7 @@
       </template>
       <ul>
         <li v-for="(item, index) in navigate" :key="index" @click="index === navigate.length - 1 || goOne(item)">
-          <template v-if="item.icon && (item.icon.icon || item.icon.type)">
+          <template v-if="!hideMenuIcon && item.icon && (item.icon.icon || item.icon.type)">
             <component class="menu-icon" :is="item.icon.icon" v-bind="item.icon.attrs"
               v-if="item.icon.type === 'custom'" />
             <el-icon class="menu-icon" v-bind="item.icon.attrs" v-else-if="item.icon.type === 'el'">
@@ -71,6 +71,11 @@ const props = defineProps({
       return [];
     },
   },
+  // 隐藏菜单图标
+  hideMenuIcon: {
+    type: Boolean,
+    default: false,
+  },
   // 间隔图标
   spaceIcon: {
     type: Object,
@@ -124,10 +129,10 @@ let rowData = [];
 // 树形数据
 let routeMsg = [];
 // 深拷贝
-const deepCopy = (obj, num = 1) => {
+const deepCopy = (obj) => {
   let result = obj instanceof Array ? [] : {};
   for (let key in obj) {
-    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key], num + 1) : obj[key];
+    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
   }
   return result;
 };
