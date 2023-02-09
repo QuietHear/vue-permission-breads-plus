@@ -1,5 +1,5 @@
 # 面包屑组件（vue3版）
-***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-permission-breads '浏览')
+***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-permission-breads '右键新窗口浏览')
 
 
 ## 安装
@@ -91,3 +91,7 @@
 	// iconfont，此时为iconfont，icon为图标去掉icon-后部分（！！！未内置，确保当前页面或全局已引入）
 	// 其他，此时为本地自定义图标，type为class，icon为内容
 >
+
+
+## 更多vue3组件
+[**自定义右键菜单**](https://github.com/QuietHear/vue-diy-rightmenu-plus '右键新窗口浏览') | [**可拖拽菜单**](https://github.com/QuietHear/vue-drag-menu-plus '右键新窗口浏览') | [**echarts组件**](https://github.com/QuietHear/vue-echarts-block-plus '右键新窗口浏览') | [**基于el-menu的菜单组件**](https://github.com/QuietHear/vue-ele-nav-plus '右键新窗口浏览') | ***面包屑组件*** | [**滑动拼图**](https://github.com/QuietHear/vue-puzzle-slider-plus '右键新窗口浏览') | [**工作日历**](https://github.com/QuietHear/vue-shop-calendar-plus '右键新窗口浏览') | [**uEditor**](https://github.com/QuietHear/vue-ueditor-block-plus '右键新窗口浏览') | [**wangEditor**](https://github.com/QuietHear/vue-wangEditor-block-plus '右键新窗口浏览')
