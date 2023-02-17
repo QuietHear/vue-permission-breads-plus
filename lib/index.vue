@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-03 17:13:14
+ * @LastEditTime: 2023-02-17 10:32:21
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -217,10 +217,12 @@ const init = () => {
   console.log(props.menu, 'props.menu');
   routeMsg = deepCopy(props.menu);
   rowData = [];
-  sortData(routeMsg);
-  dealData(routeMsg);
-  console.log(routeMsg, rowData, 'routeMsg');
-  routeChange();
+  if (routeMsg.length > 0) {
+    sortData(routeMsg);
+    dealData(routeMsg);
+    console.log(routeMsg, rowData, 'routeMsg');
+    routeChange();
+  }
 };
 init();
 const goBack = () => {

@@ -4,8 +4,15 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-03 17:59:48
+ * @LastEditTime: 2023-02-17 11:57:30
 */
+html.dark .vue-permission-breads-plus {
+  --permis-bread-bg            : rgb(24, 24, 28);
+  border-bottom-color          : rgb(24, 24, 28);
+  --permis-bread-position-color: rgba(255, 255, 255, 0.82);
+  --permis-bread-back-color    : rgba(255, 255, 255, 0.82);
+}
+
 .vue-permission-breads-plus {
   --permis-bread-height        : 50px;
   --permis-bread-bg            : #fff;
@@ -25,7 +32,7 @@
   // 简易模式
   &.simple {
     display          : inline-flex;
-    --permis-bread-bg: transparent;
+    --permis-bread-bg: transparent !important;
     border-bottom    : 0;
   }
 

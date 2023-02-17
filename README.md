@@ -19,15 +19,15 @@
 ## 0. 可改动样式变量
 * `--permis-bread-height`：50px;-->面包屑高度
 
-* `--permis-bread-bg`：#fff;-->面包屑背景色
+* `--permis-bread-bg`：#fff(黑夜模式:rgb(24, 24, 28));-->面包屑背景色
 
-* `--permis-bread-position-color`：#000;-->我的位置字体颜色
+* `--permis-bread-position-color`：#000(黑夜模式:rgba(255, 255, 255, 0.82));-->我的位置字体颜色
 
 * `--permis-bread-color`：#8998a6;-->不可点击的路由颜色
 
 * `--permis-bread-active-color`：#000;-->可点击的路由颜色
 
-* `--permis-bread-back-color`：#000;-->返回字体颜色
+* `--permis-bread-back-color`：#000(黑夜模式:rgba(255, 255, 255, 0.82));-->返回字体颜色
 
 
 ## 1. 参数
@@ -94,4 +94,4 @@
 
 
 ## 更多vue3组件
-[**自定义右键菜单**](https://github.com/QuietHear/vue-diy-rightmenu-plus '右键新窗口浏览') | [**可拖拽菜单**](https://github.com/QuietHear/vue-drag-menu-plus '右键新窗口浏览') | [**echarts组件**](https://github.com/QuietHear/vue-echarts-block-plus '右键新窗口浏览') | [**基于el-menu的菜单组件**](https://github.com/QuietHear/vue-ele-nav-plus '右键新窗口浏览') | ***面包屑组件*** | [**滑动拼图**](https://github.com/QuietHear/vue-puzzle-slider-plus '右键新窗口浏览') | [**工作日历**](https://github.com/QuietHear/vue-shop-calendar-plus '右键新窗口浏览') | [**uEditor**](https://github.com/QuietHear/vue-ueditor-block-plus '右键新窗口浏览') | [**wangEditor**](https://github.com/QuietHear/vue-wangEditor-block-plus '右键新窗口浏览')
+[**自定义右键菜单**](https://github.com/QuietHear/vue-diy-rightmenu-plus '右键新窗口浏览') | [**可拖拽菜单**](https://github.com/QuietHear/vue-drag-menu-plus '右键新窗口浏览') | [**echarts组件**](https://github.com/QuietHear/vue-echarts-block-plus '右键新窗口浏览') | [**基于el-menu的菜单组件**](https://github.com/QuietHear/vue-ele-nav-plus '右键新窗口浏览') | ***面包屑组件*** | [**滑动拼图**](https://github.com/QuietHear/vue-puzzle-slider-plus '右键新窗口浏览') | [**工作日历**](https://github.com/QuietHear/vue-shop-calendar-plus '右键新窗口浏览') | [**多页签组件**](https://github.com/QuietHear/vue-tabs-plus '右键新窗口浏览') | [**wangEditor**](https://github.com/QuietHear/vue-wangEditor-block-plus '右键新窗口浏览')
