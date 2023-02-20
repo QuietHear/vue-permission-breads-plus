@@ -1,7 +1,7 @@
 {
   "name": "vue-permission-breads-plus",
   "description": "基于权限、国际化的vue3 面包屑组件",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "author": "aFei <1106728884@qq.com>",
   "license": "MIT",
   "main": "dist/vue-permission-breads-plus.umd.js",
@@ -14,7 +14,9 @@
   },
   "private": false,
   "scripts": {
-    "build": "vite build"
+    "init": "npm install",
+    "build": "vite build",
+    "push": "npm publish"
   },
   "keywords": [
     "Vue3",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
     "sass": "^1.53.0",
+    "unplugin-auto-import": "^0.14.3",
     "vite": "^3.2.3",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"

@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-17 10:32:21
+ * @LastEditTime: 2023-02-20 14:50:03
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -61,8 +61,6 @@
   </div>
 </template>
 <script setup>
-import { ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
 const props = defineProps({
   // 菜单集合数据
   menu: {
