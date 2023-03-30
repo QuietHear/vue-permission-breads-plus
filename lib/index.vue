@@ -4,14 +4,14 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-20 14:50:03
+ * @LastEditTime: 2023-03-30 17:40:09
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
     <!-- 左侧内容 -->
     <div class="left">
       <template v-if="!simpleMode">
-        {{ i18n? $t(positionTitle): positionTitle }}：
+        {{ i18n ? $t(positionTitle) : positionTitle }}：
       </template>
       <ul>
         <li v-for="(item, index) in navigate" :key="index" @click="index === navigate.length - 1 || goOne(item)">
@@ -25,7 +25,7 @@
               v-else-if="item.icon.type === 'iconfont'" />
             <i :class="['menu-icon', item.icon.type]" v-bind="item.icon.attrs" v-else>{{ item.icon.icon }}</i>
           </template>
-          {{ i18n? $t(item.title) : item.title }}
+          {{ i18n ? $t(item.title) : item.title }}
           <template v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)">
             <component class="space-icon" :is="spaceIcon.icon" v-bind="spaceIcon.attrs"
               v-if="spaceIcon.type === 'custom'" />
@@ -43,7 +43,7 @@
     <div :class="['back', backIconPosition === 'right' ? 'icon-right' : 'icon-left']" @click="goBack"
       v-if="!simpleMode && showBackBtn">
       <template v-if="backIconPosition === 'right'">
-        {{ i18n? $t(backTitle): backTitle }}
+        {{ i18n ? $t(backTitle) : backTitle }}
       </template>
       <template v-if="backBtn.icon || backBtn.type">
         <component :is="backBtn.icon" v-bind="backBtn.attrs" v-if="backBtn.type === 'custom'" />
@@ -55,7 +55,7 @@
         <i :class="backBtn.type" v-bind="backBtn.attrs" v-else>{{ backBtn.icon }}</i>
       </template>
       <template v-if="backIconPosition === 'left'">
-        {{ i18n? $t(backTitle): backTitle }}
+        {{ i18n ? $t(backTitle) : backTitle }}
       </template>
     </div>
   </div>
@@ -176,21 +176,19 @@ const sortData = (list, parent) => {
 // 处理数据最终路径
 const dealData = (list) => {
   list.forEach((item) => {
-    if (item.replaceIndex !== true) {
-      if (item.parents) {
-        let arr = item.parents.split("/");
-        arr.forEach((one, oneIndex) => {
-          const res = searchRoute(one);
-          if (res.replaceIndex !== true) {
-            item.nameList.push(standardData(res));
-          }
-          if (oneIndex + 1 === arr.length) {
-            item.nameList.push(standardData(item));
-          }
-        });
-      } else {
+    if (item.parents) {
+      item.nameList = [];
+      let arr = item.parents.split("/");
+      arr.forEach(one => {
+        const res = searchRoute(one);
+        item.nameList.push(standardData(res));
+      });
+      if (item.replaceIndex !== true) {
         item.nameList.push(standardData(item));
       }
+    }
+    else if (item.replaceIndex !== true) {
+      item.nameList.push(standardData(item));
     }
     if (item.children.length > 0) {
       dealData(item.children);
