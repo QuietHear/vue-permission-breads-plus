@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-03-30 17:40:09
+ * @LastEditTime: 2023-06-29 16:52:53
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -15,27 +15,9 @@
       </template>
       <ul>
         <li v-for="(item, index) in navigate" :key="index" @click="index === navigate.length - 1 || goOne(item)">
-          <template v-if="!hideMenuIcon && item.icon && (item.icon.icon || item.icon.type)">
-            <component class="menu-icon" :is="item.icon.icon" v-bind="item.icon.attrs"
-              v-if="item.icon.type === 'custom'" />
-            <el-icon class="menu-icon" v-bind="item.icon.attrs" v-else-if="item.icon.type === 'el'">
-              <component :is="item.icon.icon" />
-            </el-icon>
-            <i :class="['menu-icon icon iconfont', 'icon-' + item.icon.icon]" v-bind="item.icon.attrs"
-              v-else-if="item.icon.type === 'iconfont'" />
-            <i :class="['menu-icon', item.icon.type]" v-bind="item.icon.attrs" v-else>{{ item.icon.icon }}</i>
-          </template>
+          <Icon class="menu-icon" :iconObj="item.icon" v-if="!hideMenuIcon && item.icon && (item.icon.icon || item.icon.type)" />
           {{ i18n ? $t(item.title) : item.title }}
-          <template v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)">
-            <component class="space-icon" :is="spaceIcon.icon" v-bind="spaceIcon.attrs"
-              v-if="spaceIcon.type === 'custom'" />
-            <el-icon class="space-icon" v-bind="spaceIcon.attrs" v-else-if="spaceIcon.type === 'el'">
-              <component :is="spaceIcon.icon" />
-            </el-icon>
-            <i :class="['space-icon icon iconfont', 'icon-' + spaceIcon.icon]" v-bind="spaceIcon.attrs"
-              v-else-if="spaceIcon.type === 'iconfont'" />
-            <i :class="['space-icon', spaceIcon.type]" v-bind="spaceIcon.attrs" v-else>{{ spaceIcon.icon }}</i>
-          </template>
+          <Icon class="space-icon" :iconObj="spaceIcon" v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)" />
         </li>
       </ul>
     </div>
@@ -45,15 +27,7 @@
       <template v-if="backIconPosition === 'right'">
         {{ i18n ? $t(backTitle) : backTitle }}
       </template>
-      <template v-if="backBtn.icon || backBtn.type">
-        <component :is="backBtn.icon" v-bind="backBtn.attrs" v-if="backBtn.type === 'custom'" />
-        <el-icon v-bind="backBtn.attrs" v-else-if="backBtn.type === 'el'">
-          <component :is="backBtn.icon" />
-        </el-icon>
-        <i :class="['icon iconfont', 'icon-' + backBtn.icon]" v-bind="backBtn.attrs"
-          v-else-if="backBtn.type === 'iconfont'" />
-        <i :class="backBtn.type" v-bind="backBtn.attrs" v-else>{{ backBtn.icon }}</i>
-      </template>
+      <Icon :iconObj="backBtn" v-if="backBtn.icon || backBtn.type" />
       <template v-if="backIconPosition === 'left'">
         {{ i18n ? $t(backTitle) : backTitle }}
       </template>
@@ -61,6 +35,7 @@
   </div>
 </template>
 <script setup>
+import Icon from "./components/icon.vue";
 const props = defineProps({
   // 菜单集合数据
   menu: {

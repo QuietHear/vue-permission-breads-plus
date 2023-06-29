@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-17 11:57:30
+ * @LastEditTime: 2023-06-29 16:53:01
 */
 html.dark .vue-permission-breads-plus {
   --permis-bread-bg            : rgb(24, 24, 28);
@@ -51,6 +51,7 @@ html.dark .vue-permission-breads-plus {
       display    : inline-flex;
       align-items: center;
       line-height: 1.5;
+      white-space: nowrap;
 
       &:last-child {
         color       : var(--permis-bread-color);
