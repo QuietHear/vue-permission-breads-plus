@@ -1,6 +1,8 @@
 # 面包屑组件（vue3版）
 ***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-permission-breads '右键新窗口浏览')
 
+## 预览
+	clone项目后npm run preview即可
 
 ## 安装
 	npm i vue-permission-breads-plus
@@ -35,8 +37,8 @@
 >
 	// 配置项说明
 	{
-		"name":'' // 菜单唯一值，对应路由的name
-		"title":'' // 菜单名
+		"name":'' // 菜单唯一值，对应路由的name，点击触发跳转时会跳转该name
+		"title":'' // 普通菜单名或i18n对应的key
 		"icon":{  // 菜单图标
 			"attrs":{},
 			"type":'',
@@ -73,9 +75,9 @@
 
 * `simpleMode`：简易模式，此时为行内块元素且只保留面包屑主内容-->Boolean;非必传;默认*false*
 
-* `positionTitle`：我的位置文字-->String;非必传;默认*我的位置*
+* `positionTitle`：我的位置文字，内容受i18n影响-->String;非必传;默认*我的位置*
 
-* `backTitle`：返回文字-->String;非必传;默认*返回*
+* `backTitle`：返回文字，内容受i18n影响-->String;非必传;默认*返回*
 
 * `backIconPosition`：返回图标的位置-->String;非必传;默认*left*
 >

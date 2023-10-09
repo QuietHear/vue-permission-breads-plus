@@ -1,6 +1,6 @@
-import { resolveComponent as N, openBlock as o, createBlock as r, resolveDynamicComponent as D, normalizeProps as x, mergeProps as y, withCtx as R, createElementBlock as l, toDisplayString as d, ref as E, watch as $, normalizeClass as V, createElementVNode as S, Fragment as g, createTextVNode as b, createCommentVNode as i, renderList as z, unref as m } from "vue";
+import { resolveComponent as N, openBlock as o, createBlock as u, resolveDynamicComponent as D, normalizeProps as x, mergeProps as y, withCtx as R, createElementBlock as l, toDisplayString as d, ref as E, watch as $, normalizeClass as V, createElementVNode as S, Fragment as g, createTextVNode as b, createCommentVNode as s, renderList as z, unref as m } from "vue";
 import { useRouter as q, useRoute as F } from "vue-router";
-const v = {
+const w = {
   __name: "icon",
   props: {
     iconObj: {
@@ -9,11 +9,11 @@ const v = {
     }
   },
   setup(e) {
-    return (u, B) => {
-      const f = N("el-icon");
-      return e.iconObj.type === "custom" ? (o(), r(D(e.iconObj.icon), x(y({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), r(f, x(y({ key: 1 }, e.iconObj.attrs)), {
+    return (r, B) => {
+      const h = N("el-icon");
+      return e.iconObj.type === "custom" ? (o(), u(D(e.iconObj.icon), x(y({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), u(h, x(y({ key: 1 }, e.iconObj.attrs)), {
         default: R(() => [
-          (o(), r(D(e.iconObj.icon)))
+          (o(), u(D(e.iconObj.icon)))
         ]),
         _: 1
       }, 16)) : e.iconObj.type === "iconfont" ? (o(), l("i", y({
@@ -78,8 +78,8 @@ const G = { class: "left" }, H = ["onClick"], J = {
     }
   },
   setup(e) {
-    const u = e, B = q(), f = F(), w = E(!1), s = E([]);
-    let O = [], h = [];
+    const r = e, B = q(), h = F(), O = E(!1), i = E([]);
+    let v = [], f = [];
     const j = (n) => {
       let t = n instanceof Array ? [] : {};
       for (let c in n)
@@ -93,15 +93,15 @@ const G = { class: "left" }, H = ["onClick"], J = {
       showBackBtn: n.showBackBtn || !1
     });
     $(
-      () => u.menu,
+      () => r.menu,
       () => {
         L();
       }
     );
-    const I = (n) => O.filter((t) => t.name === n)[0], C = (n, t) => {
+    const I = (n) => v.filter((t) => t.name === n)[0], C = (n, t) => {
       n.forEach((c) => {
         let a = [];
-        t && (a = [...t.nameList], a.push(k(t))), c.nameList = a, c.children && c.children.length > 0 ? C(c.children, c) : c.children = [], O.push(c);
+        t && (a = [...t.nameList], a.push(k(t))), c.nameList = a, c.children && c.children.length > 0 ? C(c.children, c) : c.children = [], v.push(c);
       });
     }, M = (n) => {
       n.forEach((t) => {
@@ -111,14 +111,15 @@ const G = { class: "left" }, H = ["onClick"], J = {
         })), t.replaceIndex !== !0 && t.nameList.push(k(t)), t.children.length > 0 && M(t.children);
       });
     };
-    $(f, () => {
-      T();
+    $(h, () => {
+      f.length > 0 && T();
     });
     const T = () => {
-      const n = I(f.name);
-      s.value = [...n.nameList], w.value = s.value[s.value.length - 1].showBackBtn || !1;
+      i.value = [], O.value = !1;
+      const n = I(h.name);
+      n && (i.value = [...n.nameList], O.value = i.value[i.value.length - 1].showBackBtn || !1);
     }, L = () => {
-      h = j(u.menu), O = [], h.length > 0 && (C(h), M(h), T());
+      f = j(r.menu), v = [], f.length > 0 && (C(f), M(f), T());
     };
     L();
     const p = () => {
@@ -130,50 +131,50 @@ const G = { class: "left" }, H = ["onClick"], J = {
       class: V(["vue-permission-breads-plus", e.simpleMode ? "simple" : ""])
     }, [
       S("div", G, [
-        e.simpleMode ? i("", !0) : (o(), l(g, { key: 0 }, [
+        e.simpleMode ? s("", !0) : (o(), l(g, { key: 0 }, [
           b(d(e.i18n ? n.$t(e.positionTitle) : e.positionTitle) + "： ", 1)
         ], 64)),
         S("ul", null, [
-          (o(!0), l(g, null, z(m(s), (c, a) => (o(), l("li", {
+          (o(!0), l(g, null, z(m(i), (c, a) => (o(), l("li", {
             key: a,
-            onClick: (P) => a === m(s).length - 1 || A(c)
+            onClick: (P) => a === m(i).length - 1 || A(c)
           }, [
-            !e.hideMenuIcon && c.icon && (c.icon.icon || c.icon.type) ? (o(), r(v, {
+            !e.hideMenuIcon && c.icon && (c.icon.icon || c.icon.type) ? (o(), u(w, {
               key: 0,
               class: "menu-icon",
               iconObj: c.icon
-            }, null, 8, ["iconObj"])) : i("", !0),
+            }, null, 8, ["iconObj"])) : s("", !0),
             b(" " + d(e.i18n ? n.$t(c.title) : c.title) + " ", 1),
-            a !== m(s).length - 1 && (e.spaceIcon.icon || e.spaceIcon.type) ? (o(), r(v, {
+            a !== m(i).length - 1 && (e.spaceIcon.icon || e.spaceIcon.type) ? (o(), u(w, {
               key: 1,
               class: "space-icon",
               iconObj: e.spaceIcon
-            }, null, 8, ["iconObj"])) : i("", !0)
+            }, null, 8, ["iconObj"])) : s("", !0)
           ], 8, H))), 128))
         ])
       ]),
-      !e.simpleMode && m(w) ? (o(), l("div", {
+      !e.simpleMode && m(O) ? (o(), l("div", {
         key: 0,
         class: V(["back", e.backIconPosition === "right" ? "icon-right" : "icon-left"]),
         onClick: p
       }, [
         e.backIconPosition === "right" ? (o(), l(g, { key: 0 }, [
           b(d(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
-        ], 64)) : i("", !0),
-        e.backBtn.icon || e.backBtn.type ? (o(), r(v, {
+        ], 64)) : s("", !0),
+        e.backBtn.icon || e.backBtn.type ? (o(), u(w, {
           key: 1,
           iconObj: e.backBtn
-        }, null, 8, ["iconObj"])) : i("", !0),
+        }, null, 8, ["iconObj"])) : s("", !0),
         e.backIconPosition === "left" ? (o(), l(g, { key: 2 }, [
           b(d(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
-        ], 64)) : i("", !0)
-      ], 2)) : i("", !0)
+        ], 64)) : s("", !0)
+      ], 2)) : s("", !0)
     ], 2));
   }
 }, K = [J], Q = {
   install(e) {
-    K.forEach((u) => {
-      e.component("vuePermissionBreadsPlus", u);
+    K.forEach((r) => {
+      e.component("vuePermissionBreadsPlus", r);
     });
   }
 };

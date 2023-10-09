@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-06-29 16:52:53
+ * @LastEditTime: 2023-10-09 14:50:49
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -15,9 +15,11 @@
       </template>
       <ul>
         <li v-for="(item, index) in navigate" :key="index" @click="index === navigate.length - 1 || goOne(item)">
-          <Icon class="menu-icon" :iconObj="item.icon" v-if="!hideMenuIcon && item.icon && (item.icon.icon || item.icon.type)" />
+          <Icon class="menu-icon" :iconObj="item.icon"
+            v-if="!hideMenuIcon && item.icon && (item.icon.icon || item.icon.type)" />
           {{ i18n ? $t(item.title) : item.title }}
-          <Icon class="space-icon" :iconObj="spaceIcon" v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)" />
+          <Icon class="space-icon" :iconObj="spaceIcon"
+            v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)" />
         </li>
       </ul>
     </div>
@@ -172,14 +174,20 @@ const dealData = (list) => {
 };
 watch(route, () => {
   console.log(route, 'watch route');
-  routeChange();
+  if (routeMsg.length > 0) {
+    routeChange();
+  }
 });
 // 路由改变
 const routeChange = () => {
+  navigate.value = [];
+  showBackBtn.value = false;
   const res = searchRoute(route.name);
   console.log(res, 'routeChange');
-  navigate.value = [...res.nameList];
-  showBackBtn.value = navigate.value[navigate.value.length - 1].showBackBtn || false;
+  if (res) {
+    navigate.value = [...res.nameList];
+    showBackBtn.value = navigate.value[navigate.value.length - 1].showBackBtn || false;
+  }
   console.log(navigate.value, 'navigate');
   console.log(showBackBtn.value, "showBackBtn");
 };
