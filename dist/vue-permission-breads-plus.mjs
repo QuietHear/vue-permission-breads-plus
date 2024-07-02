@@ -1,6 +1,6 @@
-import { resolveComponent as N, openBlock as o, createBlock as u, resolveDynamicComponent as D, normalizeProps as x, mergeProps as y, withCtx as R, createElementBlock as l, toDisplayString as d, ref as E, watch as $, normalizeClass as V, createElementVNode as S, Fragment as g, createTextVNode as b, createCommentVNode as s, renderList as z, unref as m } from "vue";
-import { useRouter as q, useRoute as F } from "vue-router";
-const w = {
+import { resolveComponent as A, openBlock as o, createBlock as d, resolveDynamicComponent as D, normalizeProps as p, mergeProps as k, withCtx as N, createElementBlock as i, toDisplayString as r, ref as x, watch as E, normalizeClass as $, createElementVNode as S, Fragment as g, createTextVNode as b, createCommentVNode as u, renderList as R, unref as m } from "vue";
+import { useRouter as z, useRoute as F } from "vue-router";
+const j = {
   __name: "icon",
   props: {
     iconObj: {
@@ -9,20 +9,20 @@ const w = {
     }
   },
   setup(e) {
-    return (r, B) => {
-      const h = N("el-icon");
-      return e.iconObj.type === "custom" ? (o(), u(D(e.iconObj.icon), x(y({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), u(h, x(y({ key: 1 }, e.iconObj.attrs)), {
-        default: R(() => [
-          (o(), u(D(e.iconObj.icon)))
+    return (f, v) => {
+      const s = A("el-icon");
+      return e.iconObj.type === "custom" ? (o(), d(D(e.iconObj.icon), p(k({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), d(s, p(k({ key: 1 }, e.iconObj.attrs)), {
+        default: N(() => [
+          (o(), d(D(e.iconObj.icon)))
         ]),
         _: 1
-      }, 16)) : e.iconObj.type === "iconfont" ? (o(), l("i", y({
+      }, 16)) : e.iconObj.type === "iconfont" ? (o(), i("i", k({
         key: 2,
         class: ["icon iconfont", "icon-" + e.iconObj.icon]
-      }, e.iconObj.attrs), null, 16)) : (o(), l("i", y({
+      }, e.iconObj.attrs), null, 16)) : (o(), i("i", k({
         key: 3,
         class: e.iconObj.type
-      }, e.iconObj.attrs), d(e.iconObj.icon), 17));
+      }, e.iconObj.attrs), r(e.iconObj.icon), 17));
     };
   }
 };
@@ -78,103 +78,103 @@ const G = { class: "left" }, H = ["onClick"], J = {
     }
   },
   setup(e) {
-    const r = e, B = q(), h = F(), O = E(!1), i = E([]);
-    let v = [], f = [];
-    const j = (n) => {
+    const f = e, v = z(), s = F(), B = x(!1), l = x([]);
+    let O = [], h = [];
+    const w = (n) => {
       let t = n instanceof Array ? [] : {};
       for (let c in n)
-        t[c] = typeof n[c] == "object" ? j(n[c]) : n[c];
+        t[c] = typeof n[c] == "object" ? w(n[c]) : n[c];
       return t;
-    }, k = (n) => ({
+    }, y = (n) => ({
       name: n.name,
       title: n.title,
       icon: n.icon,
       replaceIndex: n.replaceIndex || !1,
       showBackBtn: n.showBackBtn || !1
     });
-    $(
-      () => r.menu,
+    E(
+      () => f.menu,
       () => {
-        L();
+        M();
       }
     );
-    const I = (n) => v.filter((t) => t.name === n)[0], C = (n, t) => {
+    const I = (n) => O.filter((t) => t.name === n)[0], T = (n, t) => {
       n.forEach((c) => {
         let a = [];
-        t && (a = [...t.nameList], a.push(k(t))), c.nameList = a, c.children && c.children.length > 0 ? C(c.children, c) : c.children = [], v.push(c);
+        t && (a = [...t.nameList], a.push(y(t))), c.nameList = a, c.children && c.children.length > 0 ? T(c.children, c) : c.children = [], O.push(c);
       });
-    }, M = (n) => {
+    }, C = (n) => {
       n.forEach((t) => {
         t.parents && (t.nameList = [], t.parents.split("/").forEach((a) => {
           const P = I(a);
-          t.nameList.push(k(P));
-        })), t.replaceIndex !== !0 && t.nameList.push(k(t)), t.children.length > 0 && M(t.children);
+          t.nameList.push(y(P));
+        })), t.replaceIndex !== !0 && t.nameList.push(y(t)), t.children.length > 0 && C(t.children);
       });
     };
-    $(h, () => {
-      f.length > 0 && T();
+    E(s, () => {
+      h.length > 0 && L();
     });
-    const T = () => {
-      i.value = [], O.value = !1;
-      const n = I(h.name);
-      n && (i.value = [...n.nameList], O.value = i.value[i.value.length - 1].showBackBtn || !1);
-    }, L = () => {
-      f = j(r.menu), v = [], f.length > 0 && (C(f), M(f), T());
+    const L = () => {
+      l.value = [], B.value = !1;
+      const n = I(s.name);
+      n && (l.value = w(n.nameList), l.value[l.value.length - 1].supLabel = s.query.breadsSupTit || "", s.query.diyTitle && (l.value[l.value.length - 1].title = s.query.diyTitle), B.value = l.value[l.value.length - 1].showBackBtn || !1);
+    }, M = () => {
+      h = w(f.menu), O = [], h.length > 0 && (T(h), C(h), L());
     };
-    L();
-    const p = () => {
-      B.back();
-    }, A = (n) => {
-      B.push({ name: n.name });
+    M();
+    const V = () => {
+      v.back();
+    }, q = (n) => {
+      v.push({ name: n.name });
     };
-    return (n, t) => (o(), l("div", {
-      class: V(["vue-permission-breads-plus", e.simpleMode ? "simple" : ""])
+    return (n, t) => (o(), i("div", {
+      class: $(["vue-permission-breads-plus", e.simpleMode ? "simple" : ""])
     }, [
       S("div", G, [
-        e.simpleMode ? s("", !0) : (o(), l(g, { key: 0 }, [
-          b(d(e.i18n ? n.$t(e.positionTitle) : e.positionTitle) + "： ", 1)
+        e.simpleMode ? u("", !0) : (o(), i(g, { key: 0 }, [
+          b(r(e.i18n ? n.$t(e.positionTitle) : e.positionTitle) + "： ", 1)
         ], 64)),
         S("ul", null, [
-          (o(!0), l(g, null, z(m(i), (c, a) => (o(), l("li", {
+          (o(!0), i(g, null, R(m(l), (c, a) => (o(), i("li", {
             key: a,
-            onClick: (P) => a === m(i).length - 1 || A(c)
+            onClick: (P) => a === m(l).length - 1 || q(c)
           }, [
-            !e.hideMenuIcon && c.icon && (c.icon.icon || c.icon.type) ? (o(), u(w, {
+            !e.hideMenuIcon && c.icon && (c.icon.icon || c.icon.type) ? (o(), d(j, {
               key: 0,
               class: "menu-icon",
               iconObj: c.icon
-            }, null, 8, ["iconObj"])) : s("", !0),
-            b(" " + d(e.i18n ? n.$t(c.title) : c.title) + " ", 1),
-            a !== m(i).length - 1 && (e.spaceIcon.icon || e.spaceIcon.type) ? (o(), u(w, {
+            }, null, 8, ["iconObj"])) : u("", !0),
+            b(" " + r(e.i18n ? n.$t(c.title) : c.title) + r(c.supLabel) + " ", 1),
+            a !== m(l).length - 1 && (e.spaceIcon.icon || e.spaceIcon.type) ? (o(), d(j, {
               key: 1,
               class: "space-icon",
               iconObj: e.spaceIcon
-            }, null, 8, ["iconObj"])) : s("", !0)
+            }, null, 8, ["iconObj"])) : u("", !0)
           ], 8, H))), 128))
         ])
       ]),
-      !e.simpleMode && m(O) ? (o(), l("div", {
+      !e.simpleMode && m(B) ? (o(), i("div", {
         key: 0,
-        class: V(["back", e.backIconPosition === "right" ? "icon-right" : "icon-left"]),
-        onClick: p
+        class: $(["back", e.backIconPosition === "right" ? "icon-right" : "icon-left"]),
+        onClick: V
       }, [
-        e.backIconPosition === "right" ? (o(), l(g, { key: 0 }, [
-          b(d(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
-        ], 64)) : s("", !0),
-        e.backBtn.icon || e.backBtn.type ? (o(), u(w, {
+        e.backIconPosition === "right" ? (o(), i(g, { key: 0 }, [
+          b(r(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
+        ], 64)) : u("", !0),
+        e.backBtn.icon || e.backBtn.type ? (o(), d(j, {
           key: 1,
           iconObj: e.backBtn
-        }, null, 8, ["iconObj"])) : s("", !0),
-        e.backIconPosition === "left" ? (o(), l(g, { key: 2 }, [
-          b(d(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
-        ], 64)) : s("", !0)
-      ], 2)) : s("", !0)
+        }, null, 8, ["iconObj"])) : u("", !0),
+        e.backIconPosition === "left" ? (o(), i(g, { key: 2 }, [
+          b(r(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
+        ], 64)) : u("", !0)
+      ], 2)) : u("", !0)
     ], 2));
   }
 }, K = [J], Q = {
   install(e) {
-    K.forEach((r) => {
-      e.component("vuePermissionBreadsPlus", r);
+    K.forEach((f) => {
+      e.component("vuePermissionBreadsPlus", f);
     });
   }
 };

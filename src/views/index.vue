@@ -1,10 +1,10 @@
 /*
- * @Author: aFei
- * @Date: 2023-09-20 13:38:58
+* @Author: aFei
+* @Date: 2023-09-20 13:38:58
 */
 /*
- * @LastEditors: aFei
- * @LastEditTime: 2023-10-09 14:53:35
+* @LastEditors: aFei
+* @LastEditTime: 2024-07-02 10:45:42
 */
 <template>
   <div class="demo">
@@ -16,7 +16,12 @@
       <el-button @click="router.push({ name: 'a' })">普通一级菜单</el-button>
       <el-button @click="router.push({ name: 'b' })">一级菜单</el-button>
       <el-button @click="router.push({ name: 'ba' })">特殊二级菜单</el-button>
-      <el-button @click="router.push({ name: 'bb' })">二级菜单的详情</el-button>
+      <el-button
+        @click="router.push({ name: 'bb', query: { breadsSupTit: '1', diyTitle: '二级菜单的编辑' } })">二级菜单的编辑1</el-button>
+      <el-button @click="router.push({ name: 'bb', query: { breadsSupTit: '1' } })">二级菜单的详情1</el-button>
+      <el-button
+        @click="router.push({ name: 'bb', query: { breadsSupTit: '2', diyTitle: '二级菜单的编辑' } })">二级菜单的编辑2</el-button>
+      <el-button @click="router.push({ name: 'bb', query: { breadsSupTit: '2' } })">二级菜单的详情2</el-button>
       <el-button @click="router.push({ name: 'bc' })">二级菜单的详情的详情</el-button>
       <router-view />
     </el-scrollbar>

@@ -1,10 +1,10 @@
 /*
- * @Author: aFei
- * @Date: 2022-07-27 14:00:00
+* @Author: aFei
+* @Date: 2022-07-27 14:00:00
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-10-09 14:50:49
+ * @LastEditTime: 2024-07-02 10:47:30
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -17,7 +17,7 @@
         <li v-for="(item, index) in navigate" :key="index" @click="index === navigate.length - 1 || goOne(item)">
           <Icon class="menu-icon" :iconObj="item.icon"
             v-if="!hideMenuIcon && item.icon && (item.icon.icon || item.icon.type)" />
-          {{ i18n ? $t(item.title) : item.title }}
+          {{ i18n ? $t(item.title) : item.title }}{{ item.supLabel }}
           <Icon class="space-icon" :iconObj="spaceIcon"
             v-if="index !== navigate.length - 1 && (spaceIcon.icon || spaceIcon.type)" />
         </li>
@@ -185,7 +185,9 @@ const routeChange = () => {
   const res = searchRoute(route.name);
   console.log(res, 'routeChange');
   if (res) {
-    navigate.value = [...res.nameList];
+    navigate.value = deepCopy(res.nameList);
+    navigate.value[navigate.value.length - 1].supLabel = route.query.breadsSupTit || '';
+    route.query.diyTitle ? navigate.value[navigate.value.length - 1].title = route.query.diyTitle : null;
     showBackBtn.value = navigate.value[navigate.value.length - 1].showBackBtn || false;
   }
   console.log(navigate.value, 'navigate');
