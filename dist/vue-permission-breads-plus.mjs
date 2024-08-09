@@ -1,4 +1,4 @@
-import { resolveComponent as A, openBlock as o, createBlock as d, resolveDynamicComponent as D, normalizeProps as p, mergeProps as k, withCtx as N, createElementBlock as i, toDisplayString as r, ref as x, watch as E, normalizeClass as $, createElementVNode as S, Fragment as g, createTextVNode as b, createCommentVNode as u, renderList as R, unref as m } from "vue";
+import { resolveComponent as A, openBlock as o, createBlock as f, resolveDynamicComponent as P, normalizeProps as D, mergeProps as k, withCtx as N, createElementBlock as i, toDisplayString as d, ref as x, watch as E, normalizeClass as $, createElementVNode as S, Fragment as g, createTextVNode as b, createCommentVNode as u, renderList as R, unref as m } from "vue";
 import { useRouter as z, useRoute as F } from "vue-router";
 const j = {
   __name: "icon",
@@ -9,11 +9,11 @@ const j = {
     }
   },
   setup(e) {
-    return (f, v) => {
+    return (r, v) => {
       const s = A("el-icon");
-      return e.iconObj.type === "custom" ? (o(), d(D(e.iconObj.icon), p(k({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), d(s, p(k({ key: 1 }, e.iconObj.attrs)), {
+      return e.iconObj.type === "custom" ? (o(), f(P(e.iconObj.icon), D(k({ key: 0 }, e.iconObj.attrs)), null, 16)) : e.iconObj.type === "el" ? (o(), f(s, D(k({ key: 1 }, e.iconObj.attrs)), {
         default: N(() => [
-          (o(), d(D(e.iconObj.icon)))
+          (o(), f(P(e.iconObj.icon)))
         ]),
         _: 1
       }, 16)) : e.iconObj.type === "iconfont" ? (o(), i("i", k({
@@ -22,7 +22,7 @@ const j = {
       }, e.iconObj.attrs), null, 16)) : (o(), i("i", k({
         key: 3,
         class: e.iconObj.type
-      }, e.iconObj.attrs), r(e.iconObj.icon), 17));
+      }, e.iconObj.attrs), d(e.iconObj.icon), 17));
     };
   }
 };
@@ -69,7 +69,10 @@ const G = { class: "left" }, H = ["onClick"], J = {
     // 返回图标的位置
     backIconPosition: {
       type: String,
-      default: "left"
+      default: "left",
+      validator(e, r) {
+        return ["left", "right"].includes(e);
+      }
     },
     // 返回按钮
     backBtn: {
@@ -78,7 +81,7 @@ const G = { class: "left" }, H = ["onClick"], J = {
     }
   },
   setup(e) {
-    const f = e, v = z(), s = F(), B = x(!1), l = x([]);
+    const r = e, v = z(), s = F(), B = x(!1), l = x([]);
     let O = [], h = [];
     const w = (n) => {
       let t = n instanceof Array ? [] : {};
@@ -93,7 +96,7 @@ const G = { class: "left" }, H = ["onClick"], J = {
       showBackBtn: n.showBackBtn || !1
     });
     E(
-      () => f.menu,
+      () => r.menu,
       () => {
         M();
       }
@@ -106,8 +109,8 @@ const G = { class: "left" }, H = ["onClick"], J = {
     }, C = (n) => {
       n.forEach((t) => {
         t.parents && (t.nameList = [], t.parents.split("/").forEach((a) => {
-          const P = I(a);
-          t.nameList.push(y(P));
+          const p = I(a);
+          t.nameList.push(y(p));
         })), t.replaceIndex !== !0 && t.nameList.push(y(t)), t.children.length > 0 && C(t.children);
       });
     };
@@ -119,7 +122,7 @@ const G = { class: "left" }, H = ["onClick"], J = {
       const n = I(s.name);
       n && (l.value = w(n.nameList), l.value[l.value.length - 1].supLabel = s.query.breadsSupTit || "", s.query.diyTitle && (l.value[l.value.length - 1].title = s.query.diyTitle), B.value = l.value[l.value.length - 1].showBackBtn || !1);
     }, M = () => {
-      h = w(f.menu), O = [], h.length > 0 && (T(h), C(h), L());
+      h = w(r.menu), O = [], h.length > 0 && (T(h), C(h), L());
     };
     M();
     const V = () => {
@@ -132,20 +135,20 @@ const G = { class: "left" }, H = ["onClick"], J = {
     }, [
       S("div", G, [
         e.simpleMode ? u("", !0) : (o(), i(g, { key: 0 }, [
-          b(r(e.i18n ? n.$t(e.positionTitle) : e.positionTitle) + "： ", 1)
+          b(d(e.i18n ? n.$t(e.positionTitle) : e.positionTitle) + "： ", 1)
         ], 64)),
         S("ul", null, [
           (o(!0), i(g, null, R(m(l), (c, a) => (o(), i("li", {
             key: a,
-            onClick: (P) => a === m(l).length - 1 || q(c)
+            onClick: (p) => a === m(l).length - 1 || q(c)
           }, [
-            !e.hideMenuIcon && c.icon && (c.icon.icon || c.icon.type) ? (o(), d(j, {
+            !e.hideMenuIcon && c.icon && (c.icon.icon || c.icon.type) ? (o(), f(j, {
               key: 0,
               class: "menu-icon",
               iconObj: c.icon
             }, null, 8, ["iconObj"])) : u("", !0),
-            b(" " + r(e.i18n ? n.$t(c.title) : c.title) + r(c.supLabel) + " ", 1),
-            a !== m(l).length - 1 && (e.spaceIcon.icon || e.spaceIcon.type) ? (o(), d(j, {
+            b(" " + d(e.i18n ? n.$t(c.title) : c.title) + d(c.supLabel) + " ", 1),
+            a !== m(l).length - 1 && (e.spaceIcon.icon || e.spaceIcon.type) ? (o(), f(j, {
               key: 1,
               class: "space-icon",
               iconObj: e.spaceIcon
@@ -159,22 +162,22 @@ const G = { class: "left" }, H = ["onClick"], J = {
         onClick: V
       }, [
         e.backIconPosition === "right" ? (o(), i(g, { key: 0 }, [
-          b(r(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
+          b(d(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
         ], 64)) : u("", !0),
-        e.backBtn.icon || e.backBtn.type ? (o(), d(j, {
+        e.backBtn.icon || e.backBtn.type ? (o(), f(j, {
           key: 1,
           iconObj: e.backBtn
         }, null, 8, ["iconObj"])) : u("", !0),
         e.backIconPosition === "left" ? (o(), i(g, { key: 2 }, [
-          b(r(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
+          b(d(e.i18n ? n.$t(e.backTitle) : e.backTitle), 1)
         ], 64)) : u("", !0)
       ], 2)) : u("", !0)
     ], 2));
   }
 }, K = [J], Q = {
   install(e) {
-    K.forEach((f) => {
-      e.component("vuePermissionBreadsPlus", f);
+    K.forEach((r) => {
+      e.component("vuePermissionBreadsPlus", r);
     });
   }
 };

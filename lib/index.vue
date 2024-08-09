@@ -3,8 +3,8 @@
 * @Date: 2022-07-27 14:00:00
 */
 /*
- * @LastEditors: aFei
- * @LastEditTime: 2024-07-02 10:47:30
+* @LastEditors: aFei
+* @LastEditTime: 2024-08-09 10:47:17
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -84,6 +84,9 @@ const props = defineProps({
   backIconPosition: {
     type: String,
     default: "left",
+    validator(value, props) {
+      return ['left', 'right'].includes(value);
+    }
   },
   // 返回按钮
   backBtn: {

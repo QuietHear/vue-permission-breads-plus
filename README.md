@@ -1,8 +1,10 @@
 # 面包屑组件（vue3版）
 ***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-permission-breads '右键新窗口浏览')
 
+
 ## 预览
 	clone项目后npm run preview即可
+
 
 ## 安装
 	npm i vue-permission-breads-plus
@@ -10,6 +12,7 @@
 	npm i vue-router
 	// 开启国际化需要安装组件，已安装请忽略
 	npm i vue-i18n
+
 
 ## 使用
 	import vuePermissionBreadsPlus from "vue-permission-breads-plus";
@@ -79,14 +82,11 @@
 
 * `simpleMode`：简易模式，此时为行内块元素且只保留面包屑主内容-->Boolean;非必传;默认*false*
 
-* `positionTitle`：我的位置文字，内容受i18n影响-->String;非必传;默认*我的位置*
+* `positionTitle`：我的位置文字，内容受i18n影响-->String;非必传;默认*'我的位置'*
 
-* `backTitle`：返回文字，内容受i18n影响-->String;非必传;默认*返回*
+* `backTitle`：返回文字，内容受i18n影响-->String;非必传;默认*'返回'*
 
-* `backIconPosition`：返回图标的位置-->String;非必传;默认*left*
->
-	只能为left/right
->
+* `backIconPosition`：返回图标的位置，校验变量只能为'left'/'right'-->String;非必传;默认*'left'*
 
 * `backBtn`：返回图标-->Object;非必传;默认*{}*
 >
@@ -100,4 +100,4 @@
 
 
 ## 更多vue3组件
-[**自定义右键菜单**](https://github.com/QuietHear/vue-diy-rightmenu-plus '右键新窗口浏览') | [**可拖拽菜单**](https://github.com/QuietHear/vue-drag-menu-plus '右键新窗口浏览') | [**echarts组件**](https://github.com/QuietHear/vue-echarts-block-plus '右键新窗口浏览') | [**基于el-menu的菜单组件**](https://github.com/QuietHear/vue-ele-nav-plus '右键新窗口浏览') | ***面包屑组件*** | [**滑动拼图**](https://github.com/QuietHear/vue-puzzle-slider-plus '右键新窗口浏览') | [**工作日历**](https://github.com/QuietHear/vue-shop-calendar-plus '右键新窗口浏览') | [**多页签组件**](https://github.com/QuietHear/vue-tabs-plus '右键新窗口浏览') | [**wangEditor**](https://github.com/QuietHear/vue-wangEditor-block-plus '右键新窗口浏览') | [**年密度组件**](https://github.com/QuietHear/vue-year-density-plus '右键新窗口浏览')
+[**自定义右键菜单**](https://github.com/QuietHear/vue-diy-rightmenu-plus '右键新窗口浏览') | [**拖拽卡片布局组件**](https://github.com/QuietHear/vue-drag-component-plus '右键新窗口浏览') | [**可拖拽菜单**](https://github.com/QuietHear/vue-drag-menu-plus '右键新窗口浏览') | [**echarts组件**](https://github.com/QuietHear/vue-echarts-block-plus '右键新窗口浏览') | [**基于el-menu的菜单组件**](https://github.com/QuietHear/vue-ele-nav-plus '右键新窗口浏览') | ***面包屑组件*** | [**滑动拼图**](https://github.com/QuietHear/vue-puzzle-slider-plus '右键新窗口浏览') | [**工作日历**](https://github.com/QuietHear/vue-shop-calendar-plus '右键新窗口浏览') | [**多页签组件**](https://github.com/QuietHear/vue-tabs-plus '右键新窗口浏览') | [**uEditor**](https://github.com/QuietHear/vue-ueditor-block-plus '右键新窗口浏览') | [**wangEditor**](https://github.com/QuietHear/vue-wangEditor-block-plus '右键新窗口浏览') | [**年密度组件**](https://github.com/QuietHear/vue-year-density-plus '右键新窗口浏览')
