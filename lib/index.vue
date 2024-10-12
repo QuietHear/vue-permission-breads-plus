@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2024-10-12 17:10:00
+ * @LastEditTime: 2024-10-12 17:18:39
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -115,7 +115,7 @@ const deepCopy = (obj) => {
     }
     return result;
   } else {
-    return obj
+    return obj;
   }
 };
 // 标准数据格式化
