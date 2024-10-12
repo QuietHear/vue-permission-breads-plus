@@ -3,8 +3,8 @@
 * @Date: 2022-07-27 14:00:00
 */
 /*
-* @LastEditors: aFei
-* @LastEditTime: 2024-08-09 10:47:17
+ * @LastEditors: aFei
+ * @LastEditTime: 2024-10-12 17:10:00
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -108,11 +108,15 @@ let rowData = [];
 let routeMsg = [];
 // 深拷贝
 const deepCopy = (obj) => {
-  let result = obj instanceof Array ? [] : {};
-  for (let key in obj) {
-    result[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+  if (typeof obj === 'object' && !isVNode(obj) && obj !== null && !obj instanceof Date) {
+    let result = obj instanceof Array ? [] : {};
+    for (let key in obj) {
+      result[key] = typeof obj[key] === 'object' && !isVNode(obj[key]) && obj[key] !== null && !obj[key] instanceof Date ? deepCopy(obj[key]) : obj[key];
+    }
+    return result;
+  } else {
+    return obj
   }
-  return result;
 };
 // 标准数据格式化
 const standardData = (obj) => {
