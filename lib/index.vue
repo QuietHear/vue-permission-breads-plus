@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2024-10-12 17:18:39
+ * @LastEditTime: 2024-10-18 17:34:18
 */
 <template>
   <div :class="['vue-permission-breads-plus', simpleMode ? 'simple' : '']">
@@ -108,10 +108,10 @@ let rowData = [];
 let routeMsg = [];
 // 深拷贝
 const deepCopy = (obj) => {
-  if (typeof obj === 'object' && !isVNode(obj) && obj !== null && !obj instanceof Date) {
+  if (typeof obj === 'object' && !isVNode(obj) && obj !== null && !(obj instanceof Date)) {
     let result = obj instanceof Array ? [] : {};
     for (let key in obj) {
-      result[key] = typeof obj[key] === 'object' && !isVNode(obj[key]) && obj[key] !== null && !obj[key] instanceof Date ? deepCopy(obj[key]) : obj[key];
+      result[key] = typeof obj[key] === 'object' && !isVNode(obj[key]) && obj[key] !== null && !(obj[key] instanceof Date) ? deepCopy(obj[key]) : obj[key];
     }
     return result;
   } else {
